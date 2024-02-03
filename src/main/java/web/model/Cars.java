@@ -50,17 +50,7 @@ public class Cars {
         this.year = year;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Cars cars)) return false;
-        return getId() == cars.getId() && getYear() == cars.getYear() && Objects.equals(getModel(), cars.getModel()) && Objects.equals(getColor(), cars.getColor());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getModel(), getColor(), getYear());
-    }
 
     @Override
     public String toString() {
