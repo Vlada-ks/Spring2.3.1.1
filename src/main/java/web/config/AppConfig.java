@@ -1,7 +1,5 @@
 package web.config;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -36,10 +34,10 @@ import java.util.Properties;
 @ComponentScan(value = "web")
 public class AppConfig implements WebMvcConfigurer {
 
-
     private final Environment env;
 
     private final ApplicationContext applicationContext;
+
     @Autowired
     public AppConfig(Environment env, ApplicationContext applicationContext) {
         this.env = env;
@@ -73,7 +71,7 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(){
+    public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
@@ -90,7 +88,6 @@ public class AppConfig implements WebMvcConfigurer {
         properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
         properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-//        properties.setProperty("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
         return properties;
     }
 
@@ -100,7 +97,6 @@ public class AppConfig implements WebMvcConfigurer {
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/pages/");
         templateResolver.setSuffix(".html");
-//        templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
 
@@ -118,9 +114,6 @@ public class AppConfig implements WebMvcConfigurer {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
-//        resolver.setCharacterEncoding("UTF-8");
-//        resolver.setContentType("text/html; charset=UTF-8");
     }
-
 
 }
